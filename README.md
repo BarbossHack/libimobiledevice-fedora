@@ -1,4 +1,4 @@
-# libmobiledevice-fedora
+# libimobiledevice-fedora
 
 A Dockerfile to build [libimobiledevice](https://github.com/libimobiledevice) for Fedora !
 

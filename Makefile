@@ -5,10 +5,10 @@ FEDORA_VERSION=$$(cat ./FEDORA_VERSION)
 all: build
 
 build: clean
-	@podman build --build-arg=FEDORA_VERSION=$(FEDORA_VERSION) -t libmobiledevice:latest .
-	@podman create --name libmobiledevice libmobiledevice:latest
-	@podman cp libmobiledevice:/output .
-	@podman cp libmobiledevice:/usr/lib64/libzip.so.5 ./output/lib/libzip.so.5
+	@podman build --build-arg=FEDORA_VERSION=$(FEDORA_VERSION) -t libimobiledevice:latest .
+	@podman create --name libimobiledevice libimobiledevice:latest
+	@podman cp libimobiledevice:/output .
+	@podman cp libimobiledevice:/usr/lib64/libzip.so.5 ./output/lib/libzip.so.5
 
 usbmuxd:
 	@-sudo systemctl stop usbmuxd
@@ -22,4 +22,4 @@ usbmuxd:
 
 clean:
 	@podman unshare rm -rf ./output
-	@-podman rm -f libmobiledevice 2>/dev/null
+	@-podman rm -f libimobiledevice 2>/dev/null
