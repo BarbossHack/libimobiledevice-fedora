@@ -2,7 +2,7 @@ ARG FEDORA_VERSION
 FROM docker.io/fedora:${FEDORA_VERSION}
 
 RUN dnf update -y && \
-    dnf install -y git make gcc clang libtool automake autoconf python-devel libcurl-devel zlib-devel readline-devel which libzip-devel diffutils libusbmuxd-devel openssl-devel pkg-config libusb1-devel libxml2-devel fuse-devel && \
+    dnf install -y git make gcc clang libtool automake autoconf python-devel libcurl-devel zlib-devel readline-devel which libzip-devel diffutils openssl-devel pkg-config libusb1-devel libxml2-devel fuse-devel && \
     dnf install -y rpmdevtools
 
 ENV PKG_CONFIG_PATH /usr/local/lib/pkgconfig
@@ -19,6 +19,13 @@ RUN git clone https://github.com/libimobiledevice/libplist.git && \
 # Build and install libimobiledevice-glue
 RUN git clone https://github.com/libimobiledevice/libimobiledevice-glue.git && \
     cd libimobiledevice-glue && \
+    ./autogen.sh && \
+    make && \
+    make install
+
+# Build and install libusbmuxd
+RUN git clone https://github.com/libimobiledevice/libusbmuxd.git && \
+    cd libusbmuxd && \
     ./autogen.sh && \
     make && \
     make install

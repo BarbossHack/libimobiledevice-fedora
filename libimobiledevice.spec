@@ -29,5 +29,5 @@ rm -rf $RPM_BUILD_ROOT
 /usr/local/share/*
 
 %changelog
-* Sat Feb 10 2024
+* Sat Feb 10 2024 Name
 - Init
