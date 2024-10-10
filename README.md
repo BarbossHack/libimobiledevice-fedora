@@ -1,6 +1,6 @@
 # libimobiledevice-fedora
 
-A Dockerfile to build [libimobiledevice](https://github.com/libimobiledevice) for Fedora !
+A Dockerfile to build [libimobiledevice](https://github.com/libimobiledevice) for Fedora
 
 ## Usage
 
@@ -29,4 +29,4 @@ idevicerestore --erase -y --latest
 
 ## Fedora version
 
-Current supported Fedora version is 39, but you can change the version in `FEDORA_VERSION` file.
+Current supported Fedora version is 40, but you can change the version in `FEDORA_VERSION` file.

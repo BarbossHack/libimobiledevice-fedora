@@ -8,6 +8,9 @@ build: clean
 	@podman create --name libimobiledevice libimobiledevice:latest
 	@mkdir -p ./dist/usr/
 	@podman cp libimobiledevice:/root/libimobiledevice-0.1.0/usr/local ./dist/usr/
+	@podman cp libimobiledevice:/usr/lib64/libzip.so.5.5 ./dist/usr/local/lib/
+	@ln -s libzip.so.5.5 ./dist/usr/local/lib/libzip.so.5
+	@ln -s libzip.so.5.5 ./dist/usr/local/lib/libzip.so
 	@podman cp libimobiledevice:/root/rpmbuild/RPMS/x86_64/libimobiledevice-0.1.0-1.fc$(FEDORA_VERSION).x86_64.rpm ./dist/
 
 usbmuxd:

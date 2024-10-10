@@ -9,75 +9,15 @@ ENV PKG_CONFIG_PATH /usr/local/lib/pkgconfig
 WORKDIR /root
 RUN rm -rf /usr/local/*
 
-# Build and install libplist
-RUN git clone https://github.com/libimobiledevice/libplist.git && \
-    cd libplist && \
-    ./autogen.sh && \
-    make && \
-    make install
-
-# Build and install libimobiledevice-glue
-RUN git clone https://github.com/libimobiledevice/libimobiledevice-glue.git && \
-    cd libimobiledevice-glue && \
-    ./autogen.sh && \
-    make && \
-    make install
-
-# Build and install libusbmuxd
-RUN git clone https://github.com/libimobiledevice/libusbmuxd.git && \
-    cd libusbmuxd && \
-    ./autogen.sh && \
-    make && \
-    make install
-
-# Build and install libimobiledevice
-RUN git clone https://github.com/libimobiledevice/libimobiledevice.git && \
-    cd libimobiledevice && \
-    ./autogen.sh && \
-    make && \
-    make install
-
-# Build and install usbmuxd
-RUN git clone https://github.com/libimobiledevice/usbmuxd.git && \
-    cd usbmuxd && \
-    ./autogen.sh && \
-    make && \
-    make install
-
-# Build and install libirecovery
-RUN git clone https://github.com/libimobiledevice/libirecovery.git && \
-    cd libirecovery && \
-    ./autogen.sh && \
-    make && \
-    make install
-
-# Build and install ideviceactivation
-RUN git clone https://github.com/libimobiledevice/libideviceactivation.git && \
-    cd libideviceactivation && \
-    ./autogen.sh && \
-    make && \
-    make install
-
-# Build and install ideviceinstaller
-RUN git clone https://github.com/libimobiledevice/ideviceinstaller.git && \
-    cd ideviceinstaller && \
-    ./autogen.sh && \
-    make && \
-    make install
-
-# Build and install ifuse
-RUN git clone https://github.com/libimobiledevice/ifuse.git && \
-    cd ifuse && \
-    ./autogen.sh && \
-    make && \
-    make install
-
-# Build and install idevicerestore
-RUN git clone https://github.com/libimobiledevice/idevicerestore.git && \
-    cd idevicerestore && \
-    ./autogen.sh && \
-    make && \
-    make install
+# Build all libimobiledevice binaries, in this specific order
+RUN for project in "libplist" "libimobiledevice-glue" "libusbmuxd" "libtatsu" "libimobiledevice" "usbmuxd" "libirecovery" "libideviceactivation" "ideviceinstaller" "ifuse" "idevicerestore"; do \
+        cd /root/ && \
+        git clone https://github.com/libimobiledevice/${project}.git && \
+        cd ${project} && \
+        ./autogen.sh && \
+        make && \
+        make install; \
+    done
 
 # Build libimobiledevice RPM package
 RUN rpmdev-setuptree && \
