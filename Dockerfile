@@ -14,17 +14,11 @@ RUN for project in "libplist" "libimobiledevice-glue" "libusbmuxd" "libtatsu" "l
         cd /root/ && \
         git clone https://github.com/libimobiledevice/${project}.git && \
         cd ${project} && \
-        ./autogen.sh && \
+        ./autogen.sh --prefix=/usr/local && \
         make && \
         make install; \
     done
 
-# Build libimobiledevice RPM package
-RUN rpmdev-setuptree && \
-    mkdir -p libimobiledevice-0.1.0/usr/local/ && \
-    cp -r /usr/local/{bin,sbin,share,lib} libimobiledevice-0.1.0/usr/local/ && \
-    rm -r libimobiledevice-0.1.0/usr/local/lib/{*.a,*.la,pkgconfig} && \
-    tar --create --file rpmbuild/SOURCES/libimobiledevice-0.1.0.tar.gz libimobiledevice-0.1.0
-COPY libimobiledevice.spec rpmbuild/SPECS/
-RUN QA_RPATHS=$(( 0x0002 )) rpmbuild -bs rpmbuild/SPECS/libimobiledevice.spec && \
-    QA_RPATHS=$(( 0x0002 )) rpmbuild -bb rpmbuild/SPECS/libimobiledevice.spec
+RUN mkdir -p /root/usr/local/ && \
+    cp -r /usr/local/{bin,sbin,share,lib} /root/usr/local/ && \
+    rm -r /root/usr/local/lib/{*.a,*.la,pkgconfig}

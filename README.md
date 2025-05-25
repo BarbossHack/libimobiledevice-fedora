@@ -29,4 +29,4 @@ idevicerestore --erase -y --latest
 
 ## Fedora version
 
-Current supported Fedora version is 40, but you can change the version in `FEDORA_VERSION` file.
+Current supported Fedora version is 42, but you can change the version in `FEDORA_VERSION` file.
