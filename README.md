@@ -6,7 +6,7 @@ A Dockerfile to build [libimobiledevice](https://github.com/libimobiledevice) fo
 
 ```bash
 # 1. Build dependencies
-make build
+make build FEDORA_VERSION=44
 
 # 2. Start usbmuxd
 make usbmuxd
@@ -26,7 +26,3 @@ idevicerestore --latest -y
 # You can also force restoring with erasing all data and basically resetting the device by using:
 idevicerestore --erase -y --latest
 ```
-
-## Fedora version
-
-Current supported Fedora version is 42, but you can change the version in `FEDORA_VERSION` file.

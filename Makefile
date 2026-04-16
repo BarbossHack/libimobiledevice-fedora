@@ -1,5 +1,6 @@
 .PHONY=build usbmuxd clean
-FEDORA_VERSION=$$(cat ./FEDORA_VERSION)
+
+FEDORA_VERSION := 44
 
 all: build
 
