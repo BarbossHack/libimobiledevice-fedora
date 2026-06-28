@@ -18,7 +18,7 @@ usbmuxd:
 	@-sudo pkill usbmuxd
 	@sudo rm -f /var/run/usbmuxd.pid /var/run/usbmuxd
 	@sudo rm -rf /var/lib/lockdown/
-	@sudo LD_LIBRARY_PATH=$$PWD/dist/usr/local/lib dist/usr/local/sbin/usbmuxd -U ${USER} -f -vv
+	@sudo LD_LIBRARY_PATH=$$PWD/dist/usr/local/lib dist/usr/local/sbin/usbmuxd -U ${USER} -f -p -vvv
 	@-sudo pkill usbmuxd
 	@sudo rm -f /var/run/usbmuxd.pid /var/run/usbmuxd
 	@sudo rm -rf /var/lib/lockdown/
